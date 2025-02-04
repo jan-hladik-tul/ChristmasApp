@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Countdown Timer TextView -->
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="60"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Speed Button -->
+    <Button
+        android:id="@+id/btn_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed: 1x"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/buttonAccent"
+        android:textColor="@android:color/white" />
+
+    <!-- The GameView will be added programmatically to this container -->
+</FrameLayout>

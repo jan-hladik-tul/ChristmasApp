@@ -1,5 +1,6 @@
 package com.example.christmasapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     // Set game duration (e.g., 60 seconds)
     private val gameDurationMillis: Long = 60000
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

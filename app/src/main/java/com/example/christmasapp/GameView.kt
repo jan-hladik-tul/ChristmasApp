@@ -1,5 +1,6 @@
 package com.example.christmasapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.os.Handler
@@ -24,7 +25,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private var scoreMultiplierPowerup: Int = 1
 
     // Basket/Sleigh properties
-    private var basketX = 0f
+    var basketX = 0f
     private var basketY = 0f
     private var basketWidth = 200f
     private var basketHeight = 100f
@@ -34,13 +35,13 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private data class Gift(var x: Float, var y: Float, val bitmap: Bitmap)
     private val gifts = mutableListOf<Gift>()
     private val giftFallSpeed = 10f
-    private lateinit var giftBitmap: Bitmap
+    private var giftBitmap: Bitmap
 
     // Power-up properties (for score multiplier)
     private data class PowerUp(var x: Float, var y: Float, val bitmap: Bitmap)
     private val powerUps = mutableListOf<PowerUp>()
     private val powerUpFallSpeed = 8f
-    private lateinit var powerUpBitmap: Bitmap  // Uses R.drawable.multiplier
+    private var powerUpBitmap: Bitmap  // Uses R.drawable.multiplier
 
     // Background image
     private lateinit var backgroundBitmap: Bitmap
@@ -138,7 +139,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
                 gift.x <= basketX + basketWidth) {
                 // Increase score by the current multiplier value.
                 score += scoreMultiplierPowerup
-                giftIterator.remove()
+                giftIterator.run { remove() }
             } else if (gift.y > height) {
                 giftIterator.remove()
             }
@@ -189,6 +190,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     }
 
     // Handle touch events to move the basket horizontally.
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
